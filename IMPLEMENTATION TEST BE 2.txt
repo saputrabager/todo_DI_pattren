@@ -1,0 +1,43 @@
+IMPLEMENTATION TEST BE 2
+
+1. select * from employees
+2. select count(*) from employees where job_title = "Manager"
+3. select name, salary from employees  where department = "Sales" or department = "Marketing"
+4. select avg(salary) from employees where join_date >= CURRENT_DATE - INTERVAL '5 years'
+5. select e.name, sum(sd.sales) total_sales 
+	from employess e 
+	join sales_data sd on sd.employee_id = e.employee_id 
+	group by e.name 
+	order by total_sales desc 
+	limit 5
+6. select name, salary, average 
+   from employees e
+   join (
+	select department, avg(salary) as average
+   	from employees
+   	group by department 
+   	sort by average desc
+   	limit 1 ) high_department on e.department = high_department.department
+7. select name, total_sales,RANK() OVER (ORDER BY total_sales DESC) as peringkat
+   from (
+      select e.name, sum(sd.sales) total_sales
+      from employees e
+      left join sales_data sd ON e.employee_id = sd.employee_id
+      group by e.employee_id, e.name
+   ) total_penjualan
+8. create or replace FUNCTION get_employee_salary_by_department(input_department VARCHAR)
+   RETURNS TABLE (
+      employee_name VARCHAR,
+      total_salary NUMERIC
+   ) AS $$
+   BEGIN
+       RETURN QUERY 
+       select e.name as employee_name, sum(e.salary) as total_salary
+       from employees e
+       where e.department = input_department
+       group by e.name;
+   END;
+   $$ LANGUAGE plpgsql;
+
+
+	

@@ -1,0 +1,72 @@
+PROBLEM SOLVING 1
+
+function minMaxSum (string_contain_integer_spareted_by_space):
+   input_array = split string_contain_integer_spareted_by_space by space
+
+   check every input_array for invalid value (not integer)
+      if there invalid value return error
+
+   sort input_array ascending
+
+   total = 0;
+   
+   for every element in input_array
+      total = total + element
+
+   minValue = total - input_aray[4]
+   maxValue = total - input_array[0]
+
+   print minValue + "  " + maxValue
+
+
+
+
+PROBLEM SOLVING 2
+
+function plusMinus (arrLength, arr):
+   check if arrLength and arr length have same number
+      if not same return error
+
+   check every element in arr is numeric
+      if invalid value return error
+
+   positive = filter arr for every element bigger than 0
+   negative = filter arr for every element smaller than 0
+   zero = filter arr for every element equal 0
+
+   positiveRatio = (positive/arrLength)limit decimal number to 6
+   negativeRatio = (negative/arrLength)limit decimal number to 6
+   zeroRatio = (zero/arrLength) limit decimal number to 6
+
+   print positiveRatio + "\n" + negativeRatio + "\n" + zeroRatio
+
+
+
+
+PROBLEM SOlVING 3
+
+timeConversion (timeString): 
+   timeArr = timeString split by ":"
+   if timeArr length != 3
+      return error
+
+   hour = timeArr[0]
+   minute = timeArr[1]
+   secondString = lowercase timeArr[2]
+   second
+
+   if secondString not include "am" or "pm"
+	return error
+
+   if secondString include "am"
+	second = secondString replace "am" with ""
+	if hour = 12
+	   hour = 0
+   else 
+  	second = secondString replace "pm" with ""
+	hour = hour + 12
+
+   print hour + ":" + minute + ":" second
+   
+
+
